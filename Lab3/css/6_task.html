@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS - Задание 6</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #333333;
+        }
+
+        .page {
+            width: 960px;
+            margin: 70px auto;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 24px 0;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .block {
+            background: #efefef;
+            margin-bottom: 22px;
+        }
+
+        .menu {
+            padding: 18px 0;
+        }
+
+        .menu a {
+            color: #7a5a98;
+            font-size: 14px;
+            margin: 0 10px;
+            text-decoration: underline;
+        }
+
+        .hero {
+            height: 140px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 18px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        .columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            height: 150px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 18px;
+            box-sizing: border-box;
+            background: #efefef;
+            margin-bottom: 22px;
+        }
+
+        .footer {
+            padding: 18px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Логотип</h1>
+
+        <div class="block menu">
+            <a href="#">Домой</a>
+            <a href="#">Товары</a>
+            <a href="#">Услуги</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+        </div>
+
+        <div class="block hero">Характеристика</div>
+
+        <div class="columns">
+            <div class="column">Колонка 1</div>
+            <div class="column">Колонка 2</div>
+            <div class="column">Колонка 3</div>
+        </div>
+
+        <div class="block footer">© МЕРНI 2026</div>
+    </div>
+</body>
+</html>

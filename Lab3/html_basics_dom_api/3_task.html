@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Basics, DOM API - Задание 3</title>
+</head>
+<body>
+    <button id="button">Нажать</button>
+    <p id="counter"></p>
+
+    <script>
+        var button = document.getElementById('button');
+        var counter = document.getElementById('counter');
+        var value = Number(localStorage.getItem('clickCounter')) || 0;
+
+        function render() {
+            counter.textContent = 'Счетчик: ' + value;
+        }
+
+        button.addEventListener('click', function () {
+            value += 1;
+            localStorage.setItem('clickCounter', value);
+            render();
+        });
+
+        render();
+    </script>
+</body>
+</html>

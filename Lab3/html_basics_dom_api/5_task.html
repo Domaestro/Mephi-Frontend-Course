@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Basics, DOM API - Задание 5</title>
+</head>
+<body>
+    <input id="display" type="text" readonly>
+
+    <table border="1" cellspacing="0" cellpadding="5">
+        <tr>
+            <td><button onclick="appendDigit('1')">1</button></td>
+            <td><button onclick="appendDigit('2')">2</button></td>
+            <td><button onclick="appendDigit('3')">3</button></td>
+            <td><button onclick="setOperator('+')">+</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendDigit('4')">4</button></td>
+            <td><button onclick="appendDigit('5')">5</button></td>
+            <td><button onclick="appendDigit('6')">6</button></td>
+            <td><button onclick="setOperator('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendDigit('7')">7</button></td>
+            <td><button onclick="appendDigit('8')">8</button></td>
+            <td><button onclick="appendDigit('9')">9</button></td>
+            <td><button onclick="setOperator('*')">*</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="clearCalculator()">C</button></td>
+            <td><button onclick="appendDigit('0')">0</button></td>
+            <td><button onclick="calculate()">=</button></td>
+            <td><button onclick="setOperator('/')">/</button></td>
+        </tr>
+    </table>
+
+    <script>
+        var display = document.getElementById('display');
+        var firstNumber = null;
+        var operator = null;
+        var waitingSecondNumber = false;
+
+        function appendDigit(digit) {
+            if (display.value === 'Ошибка') {
+                display.value = '';
+            }
+
+            if (waitingSecondNumber) {
+                display.value = digit;
+                waitingSecondNumber = false;
+            } else {
+                display.value += digit;
+            }
+        }
+
+        function setOperator(nextOperator) {
+            if (display.value === '') {
+                return;
+            }
+
+            firstNumber = Number(display.value);
+            operator = nextOperator;
+            waitingSecondNumber = true;
+        }
+
+        function calculate() {
+            if (firstNumber === null || operator === null || display.value === '') {
+                return;
+            }
+
+            var secondNumber = Number(display.value);
+            var result;
+
+            if (operator === '+') {
+                result = firstNumber + secondNumber;
+            } else if (operator === '-') {
+                result = firstNumber - secondNumber;
+            } else if (operator === '*') {
+                result = firstNumber * secondNumber;
+            } else if (operator === '/') {
+                if (secondNumber === 0) {
+                    display.value = 'Ошибка';
+                    firstNumber = null;
+                    operator = null;
+                    waitingSecondNumber = false;
+                    return;
+                }
+                result = firstNumber / secondNumber;
+            }
+
+            display.value = result;
+            firstNumber = null;
+            operator = null;
+            waitingSecondNumber = false;
+        }
+
+        function clearCalculator() {
+            display.value = '';
+            firstNumber = null;
+            operator = null;
+            waitingSecondNumber = false;
+        }
+    </script>
+</body>
+</html>

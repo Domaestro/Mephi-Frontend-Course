@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS - Задание 5</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: blue;
+            border-radius: 30px;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle" id="circle"></div>
+
+    <script>
+        var circle = document.getElementById('circle');
+
+        document.addEventListener('mousemove', function (event) {
+            circle.style.left = (event.pageX - 30) + 'px';
+            circle.style.top = (event.pageY - 30) + 'px';
+        });
+    </script>
+</body>
+</html>

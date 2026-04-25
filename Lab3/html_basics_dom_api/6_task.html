@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Basics, DOM API - Задание 6</title>
+</head>
+<body>
+    <input id="display" type="text" readonly>
+
+    <table border="1" cellspacing="0" cellpadding="5">
+        <tr>
+            <td><button onclick="appendValue('1')">1</button></td>
+            <td><button onclick="appendValue('2')">2</button></td>
+            <td><button onclick="appendValue('3')">3</button></td>
+            <td><button onclick="appendValue('+')">+</button></td>
+            <td><button onclick="appendValue('(')">(</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendValue('4')">4</button></td>
+            <td><button onclick="appendValue('5')">5</button></td>
+            <td><button onclick="appendValue('6')">6</button></td>
+            <td><button onclick="appendValue('-')">-</button></td>
+            <td><button onclick="appendValue(')')">)</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendValue('7')">7</button></td>
+            <td><button onclick="appendValue('8')">8</button></td>
+            <td><button onclick="appendValue('9')">9</button></td>
+            <td><button onclick="appendValue('*')">*</button></td>
+            <td><button onclick="clearCalculator()">C</button></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button onclick="appendValue('0')">0</button></td>
+            <td colspan="2"><button onclick="appendValue('/')">/</button></td>
+            <td><button onclick="calculate()">=</button></td>
+        </tr>
+    </table>
+
+    <script>
+        var display = document.getElementById('display');
+
+        function appendValue(value) {
+            if (display.value === 'Ошибка') {
+                display.value = '';
+            }
+            display.value += value;
+        }
+
+        function clearCalculator() {
+            display.value = '';
+        }
+
+        function isDigit(character) {
+            return character >= '0' && character <= '9';
+        }
+
+        function isOperator(token) {
+            return token === '+' || token === '-' || token === '*' || token === '/';
+        }
+
+        function tokenize(expression) {
+            var tokens = [];
+            var number = '';
+
+            for (var i = 0; i < expression.length; i += 1) {
+                var character = expression[i];
+
+                if (character === ' ') {
+                    continue;
+                }
+
+                if (isDigit(character)) {
+                    number += character;
+                    continue;
+                }
+
+                if (number !== '') {
+                    tokens.push(number);
+                    number = '';
+                }
+
+                if (character === '-' && (tokens.length === 0 || isOperator(tokens[tokens.length - 1]) || tokens[tokens.length - 1] === '(')) {
+                    var nextCharacter = expression[i + 1];
+                    if (nextCharacter === '(') {
+                        tokens.push('0');
+                        tokens.push('-');
+                        continue;
+                    }
+                    number = '-';
+                    continue;
+                }
+
+                if (isOperator(character) || character === '(' || character === ')') {
+                    tokens.push(character);
+                } else {
+                    throw new Error('Некорректный символ');
+                }
+            }
+
+            if (number !== '') {
+                if (number === '-') {
+                    throw new Error('Некорректное выражение');
+                }
+                tokens.push(number);
+            }
+
+            return tokens;
+        }
+
+
+// Числа сразу добавляются в результат
+// Операции складываются в стек с учётом приоритета: * и / имеют приоритет 2, + и - имеют приоритет 1
+// Если новая операция имеет меньший или равный приоритет, предыдущие операции выполняются раньше
+// Скобки управляют порядком вычисления
+        function toRpn(tokens) {
+            var output = [];
+            var stack = [];
+            var precedence = {
+                '+': 1,
+                '-': 1,
+                '*': 2,
+                '/': 2
+            };
+
+            for (var i = 0; i < tokens.length; i += 1) {
+                var token = tokens[i];
+
+                if (!isNaN(token)) {
+                    output.push(token);
+                } else if (isOperator(token)) {
+                    while (
+                        stack.length > 0 &&
+                        isOperator(stack[stack.length - 1]) &&
+                        precedence[stack[stack.length - 1]] >= precedence[token]
+                    ) {
+                        output.push(stack.pop());
+                    }
+                    stack.push(token);
+                } else if (token === '(') {
+                    stack.push(token);
+                } else if (token === ')') {
+                    while (stack.length > 0 && stack[stack.length - 1] !== '(') {
+                        output.push(stack.pop());
+                    }
+
+                    if (stack.length === 0) {
+                        throw new Error('Скобки расставлены неверно');
+                    }
+
+                    stack.pop();
+                }
+            }
+
+            while (stack.length > 0) {
+                var top = stack.pop();
+                if (top === '(' || top === ')') {
+                    throw new Error('Скобки расставлены неверно');
+                }
+                output.push(top);
+            }
+
+            return output;
+        }
+
+        function evaluateRpn(rpn) {
+            var stack = [];
+
+            for (var i = 0; i < rpn.length; i += 1) {
+                var token = rpn[i];
+
+                if (!isNaN(token)) {
+                    stack.push(Number(token));
+                } else {
+                    if (stack.length < 2) {
+                        throw new Error('Некорректное выражение');
+                    }
+
+                    var right = stack.pop();
+                    var left = stack.pop();
+                    var result;
+
+                    if (token === '+') {
+                        result = left + right;
+                    } else if (token === '-') {
+                        result = left - right;
+                    } else if (token === '*') {
+                        result = left * right;
+                    } else if (token === '/') {
+                        if (right === 0) {
+                            throw new Error('Деление на ноль');
+                        }
+                        result = left / right;
+                    }
+
+                    stack.push(result);
+                }
+            }
+
+            if (stack.length !== 1) {
+                throw new Error('Некорректное выражение');
+            }
+
+            return stack[0];
+        }
+
+        function calculate() {
+            try {
+                var tokens = tokenize(display.value);
+                var rpn = toRpn(tokens);
+                var result = evaluateRpn(rpn);
+                display.value = result;
+            } catch (error) {
+                display.value = 'Ошибка';
+            }
+        }
+
+        // Если встречается число — кладём его в стек
+        // Если встречается операция — берём два последних числа из стека, выполняем операцию, результат кладём обратно в стек
+        // В конце в стеке остаётся одно число — это результат
+    </script>
+</body>
+</html>

@@ -8,7 +8,7 @@ function promptLine(message) {
 }
 
 function parseNaturalList(input) {
-  const parts = input.split(/[\s,]+/).filter(Boolean);
+  const parts = input.split(/[\s,]+/).filter(Boolean); // Фильтр убирает всякие плохие значения типа null
   const nums = parts.map(p => Number.parseInt(p, 10));
   if (nums.some(n => !Number.isInteger(n) || n <= 0)) return null;
   return nums;

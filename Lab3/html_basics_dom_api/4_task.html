@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Basics, DOM API - Задание 4</title>
+</head>
+<body>
+    <button id="button">Нажать</button>
+    <p id="counter"></p>
+    <p id="speed"></p>
+
+    <script>
+        var button = document.getElementById('button');
+        var counter = document.getElementById('counter');
+        var speed = document.getElementById('speed');
+
+        var value = Number(localStorage.getItem('clickCounterWithTime')) || 0;
+        var startTime = Number(localStorage.getItem('clickCounterStartTime')) || 0;
+
+        function render() {
+            counter.textContent = 'Счетчик: ' + value;
+
+            if (value === 0 || startTime === 0) {
+                speed.textContent = 'Среднее количество кликов в секунду: 0';
+                return;
+            }
+
+            var elapsedSeconds = (Date.now() - startTime) / 1000;
+            var average = elapsedSeconds > 0 ? value / elapsedSeconds : 0;
+            speed.textContent = 'Среднее количество кликов в секунду: ' + average.toFixed(2);
+        }
+
+        button.addEventListener('click', function () {
+            if (startTime === 0) {
+                startTime = Date.now();
+                localStorage.setItem('clickCounterStartTime', startTime);
+            }
+
+            value += 1;
+            localStorage.setItem('clickCounterWithTime', value);
+            render();
+        });
+
+        render();
+    </script>
+</body>
+</html>

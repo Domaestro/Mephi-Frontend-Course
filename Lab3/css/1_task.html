@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS - Задание 1</title>
+    <style>
+        body {
+            margin: 24px;
+            font-family: "Times New Roman", serif;
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 58px;
+            font-weight: 700;
+        }
+
+        .line {
+            margin: 0 0 20px 0;
+            font-size: 24px;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: 700;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .blue {
+            color: #1f50ff;
+        }
+
+        .red {
+            color: #ff1f1f;
+        }
+
+        .formula {
+            margin: 0 0 24px 0;
+            font-size: 24px;
+        }
+
+        .theorem {
+            font-family: "Comic Sans MS", cursive;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        table {
+            width: 760px;
+            border-collapse: collapse;
+            background: #16e3e8;
+            font-size: 24px;
+        }
+
+        td {
+            border: 2px solid #000;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать!</h1>
+
+    <p class="line">
+        <span class="italic">
+            <span class="red">П</span><span class="blue">р</span><span class="red">и</span><span class="blue">в</span><span class="red">е</span><span class="blue">т</span><span class="red">с</span><span class="blue">т</span><span class="red">в</span><span class="blue">у</span><span class="red">е</span><span class="blue">м</span>
+        </span>
+        <span class="underline">
+            <span class="blue">в</span><span class="red">а</span><span class="blue">с</span>
+        </span>
+        <span class="blue">в</span>
+        <span class="bold">
+            <span class="blue">н</span><span class="red">а</span><span class="blue">ш</span><span class="red">е</span><span class="blue">м</span>
+        </span>
+        <a href="#" class="blue underline">магазине</a>!
+    </p>
+
+    <p class="formula">
+        &lt;h1&gt;<span class="theorem">Теорема Пифагора</span>&lt;/h1&gt;:
+        <i>c</i><sup>2</sup> = <i>a</i><sup>2</sup> + <i>b</i><sup>2</sup>
+    </p>
+
+    <table>
+        <tr>
+            <td colspan="2">Информация</td>
+        </tr>
+        <tr>
+            <td>Старая цена: <s>1000 ₽</s></td>
+            <td>Новая цена: 500 ₽</td>
+        </tr>
+    </table>
+</body>
+</html>
