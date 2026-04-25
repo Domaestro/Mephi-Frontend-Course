@@ -1,0 +1,77 @@
+$panel-color: #e8e8e8;
+$panel-radius: 4px;
+$panel-padding: 18px 24px;
+$page-width: 820px;
+$gap: 16px;
+$link-color: navy;
+
+@mixin panel {
+    background-color: $panel-color;
+    padding: $panel-padding;
+    border-radius: $panel-radius;
+    margin-bottom: $gap;
+}
+
+@mixin centered {
+    text-align: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: $page-width;
+    margin: 0 auto;
+    padding: 24px;
+    color: #222;
+}
+
+.logo {
+    @include centered;
+
+    h1 {
+        margin: 0 0 $gap;
+    }
+}
+
+.menu {
+    @include panel;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+
+        li a {
+            color: $link-color;
+            text-decoration: underline;
+        }
+    }
+}
+
+.banner {
+    @include panel;
+    @include centered;
+    min-height: 110px;
+}
+
+.columns {
+    display: flex;
+    gap: $gap;
+    margin-bottom: $gap;
+
+    .column {
+        @include panel;
+        @include centered;
+        flex: 1;
+        min-height: 120px;
+        margin-bottom: 0;
+    }
+}
+
+.footer {
+    @include panel;
+    @include centered;
+    margin-bottom: 0;
+}

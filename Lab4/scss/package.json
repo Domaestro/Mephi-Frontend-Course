@@ -1,0 +1,14 @@
+{
+  "name": "lab4-scss",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "watch": "sass --watch task2/styles.scss:task2/styles.css task3/styles.scss:task3/styles.css task4-sass/task2/styles.sass:task4-sass/task2/styles.css task4-sass/task3/styles.sass:task4-sass/task3/styles.css",
+    "build": "sass task2/styles.scss:task2/styles.css task3/styles.scss:task3/styles.css task4-sass/task2/styles.sass:task4-sass/task2/styles.css task4-sass/task3/styles.sass:task4-sass/task3/styles.css && lessc task5-less/task2/styles.less task5-less/task2/styles.css && lessc task5-less/task3/styles.less task5-less/task3/styles.css",
+    "build:less": "lessc task5-less/task2/styles.less task5-less/task2/styles.css && lessc task5-less/task3/styles.less task5-less/task3/styles.css"
+  },
+  "devDependencies": {
+    "less": "^4.2.0",
+    "sass": "^1.77.0"
+  }
+}

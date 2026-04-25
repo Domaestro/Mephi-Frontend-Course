@@ -1,0 +1,10 @@
+*.pdf
+AGENTS.md
+context.md
+**/context.md
+node_modules/
+package-lock.json
+*.css.map
+Lab4/typescript/dist/
+Lab4/Объяснения.md
+Lab4/README.md
