@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Axios → vk.com (браузер)</title>
+    <style>
+        body { font-family: monospace; background: #1b1b1b; color: #eee; padding: 24px; }
+        pre { background: #2a2a2a; padding: 12px; border-radius: 6px; white-space: pre-wrap; }
+        .ok { color: #6ec06e; }
+        .err { color: #ff7878; }
+    </style>
+</head>
+<body>
+    <h1>GET https://vk.com из браузера</h1>
+    <p>Откройте консоль (F12)</p>
+    <pre id="output">Запрос отправляется...</pre>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "axios": "./node_modules/axios/dist/esm/axios.js"
+            }
+        }
+    </script>
+    <script type="module">
+        import axios from 'axios';
+
+        const out = document.getElementById('output');
+
+        try {
+            const response = await axios.get('https://vk.com');
+            out.classList.add('ok');
+            out.textContent = `OK: ${response.status}\n\n${response.data.slice(0, 400)}`;
+        } catch (error) {
+            out.classList.add('err');
+            out.textContent =
+                'Ошибка запроса (ожидается):\n\n' +
+                error.message +
+                '\n\nПолный объект ошибки выведен в консоль.';
+            console.error(error);
+        }
+    </script>
+</body>
+</html>

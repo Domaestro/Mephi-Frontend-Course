@@ -20,5 +20,5 @@ class User implements IUser {
     }
 }
 
-const alice: IUser = new User('Alice', 25);
+const alice: IUser = new User('Alice', 26);
 alice.hello();

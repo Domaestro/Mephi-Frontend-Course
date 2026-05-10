@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>PixiJS — вращение прямоугольника</title>
+    <style>
+        body { margin: 0; background: #1b1b1b; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    </style>
+</head>
+<body>
+    <script type="importmap">
+        {
+            "imports": {
+                "pixi.js": "./node_modules/pixi.js/dist/pixi.mjs"
+            }
+        }
+    </script>
+    <script type="module">
+        import { Application, Graphics } from 'pixi.js';
+
+        const app = new Application();
+        await app.init({ width: 600, height: 400, background: 0x222831, antialias: true });
+        document.body.appendChild(app.canvas);
+
+        const rect = new Graphics()
+            .rect(-80, -50, 160, 100)
+            .fill(0xff7f50)
+            .stroke({ color: 0xffffff, width: 2 });
+
+        rect.x = app.screen.width / 2;
+        rect.y = app.screen.height / 2;
+        app.stage.addChild(rect);
+
+        app.ticker.add((ticker) => {
+            rect.rotation += 0.02 * ticker.deltaTime;
+        });
+    </script>
+</body>
+</html>

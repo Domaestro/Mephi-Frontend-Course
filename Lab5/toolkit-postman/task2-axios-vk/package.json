@@ -1,0 +1,13 @@
+{
+  "name": "task2-axios-vk",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "node": "node node-request.js",
+    "start": "npx --yes serve -l 5174 ."
+  },
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
+}

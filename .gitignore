@@ -7,7 +7,14 @@ package-lock.json
 *.css.map
 Lab4/typescript/dist/
 
-# Локальные материалы для защиты — в репозиторий не уходят
+Lab5/**/dist/
+
+#Lab5/toolkit-postman/screenshots/
+
+#Lab5/toolkit-postman/Postman-отчёт.md
+
+Lab5/advanced-vue/*
+
 README.md
 **/README.md
 Объяснения.md

@@ -1,0 +1,11 @@
+{
+  "name": "task1-pixi",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve -l 5173 ."
+  },
+  "dependencies": {
+    "pixi.js": "^8.2.6"
+  }
+}

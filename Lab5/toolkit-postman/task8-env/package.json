@@ -1,0 +1,15 @@
+{
+  "name": "task8-env",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start:local": "cross-env APP_ENV=local node index.js",
+    "start:dev": "cross-env APP_ENV=dev node index.js",
+    "start:prod": "cross-env APP_ENV=prod node index.js"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5"
+  }
+}

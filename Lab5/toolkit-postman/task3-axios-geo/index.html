@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Axios → geoiplookup.io (браузер)</title>
+    <style>
+        body { font-family: monospace; background: #1b1b1b; color: #eee; padding: 24px; }
+        pre { background: #2a2a2a; padding: 12px; border-radius: 6px; white-space: pre-wrap; }
+        .ok { color: #6ec06e; }
+        .err { color: #ff7878; }
+    </style>
+</head>
+<body>
+    <h1>GET https://json.geoiplookup.io/ из браузера</h1>
+    <pre id="output">Запрос отправляется...</pre>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "axios": "./node_modules/axios/dist/esm/axios.js"
+            }
+        }
+    </script>
+    <script type="module">
+        import axios from 'axios';
+
+        const out = document.getElementById('output');
+
+        try {
+            const response = await axios.get('https://json.geoiplookup.io/');
+            out.classList.add('ok');
+            out.textContent =
+                'OK ' +
+                response.status +
+                '\n\n' +
+                JSON.stringify(response.data, null, 2);
+        } catch (error) {
+            out.classList.add('err');
+            out.textContent = 'Ошибка: ' + error.message;
+            console.error(error);
+        }
+    </script>
+</body>
+</html>
