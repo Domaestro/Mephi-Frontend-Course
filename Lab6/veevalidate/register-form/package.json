@@ -1,0 +1,21 @@
+{
+  "name": "register-form",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vee-validate/yup": "^4.13.1",
+    "vee-validate": "^4.13.1",
+    "vue": "^3.4.38",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
+    "vite": "^5.4.2"
+  }
+}

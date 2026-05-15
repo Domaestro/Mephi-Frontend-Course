@@ -7,14 +7,17 @@ package-lock.json
 *.css.map
 Lab4/typescript/dist/
 
+# Артефакты сборки Vite
 Lab5/**/dist/
+Lab6/**/dist/
 
-#Lab5/toolkit-postman/screenshots/
+# Локальные screenshots для отчёта Postman (вставляешь сам перед сдачей)
+Lab5/toolkit-postman/screenshots/
 
-#Lab5/toolkit-postman/Postman-отчёт.md
+# Шаблон отчёта Postman (личный документ под скрины)
+Lab5/toolkit-postman/Postman-отчёт.md
 
-Lab5/advanced-vue/*
-
+# Локальные материалы для защиты — в репозиторий не уходят
 README.md
 **/README.md
 Объяснения.md
